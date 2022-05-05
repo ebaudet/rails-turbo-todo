@@ -1,17 +1,8 @@
-<div id="<%= dom_id todo %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= todo.title %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= todo.status %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this todo", todo, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this todo', edit_todo_path(todo), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+<li id="<%= "#{dom_id(todo)}_item" %>" class="py-3">
+  <%= turbo_frame_tag dom_id(todo) do %>
+    <div class="flex items-center justify-between">
+      <%= link_to todo.title, edit_todo_path(todo) %>
+      <%= button_to "Delete", todo_path(todo), method: :delete, class: "bg-red-50 px-3 py-2 rounded inline-flex items-center justify-center text-red-600" %>
+    </div>
   <% end %>
-</div>
+</li>
