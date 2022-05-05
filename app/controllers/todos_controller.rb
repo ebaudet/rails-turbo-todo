@@ -3,7 +3,12 @@ class TodosController < ApplicationController
 
   # GET /todos or /todos.json
   def index
-    @todos = Todo.all.reverse_order
+    @todos = Todo.in_order_of(:status, %i[incomplete complete]).order(updated_at: :desc)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /todos/1 or /todos/1.json
@@ -37,7 +42,8 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.html { redirect_to todo_url(@todo), notice: "Todo was successfully updated." }
+        # format.html { redirect_to todo_url(@todo), notice: "Todo was successfully updated." }
+        format.html { redirect_to todos_url, notice: "Todo was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@todo)}_form", partial: "form", locals: { todo: @todo }) }

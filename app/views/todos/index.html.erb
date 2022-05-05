@@ -3,7 +3,10 @@
 
   <%= render "form", todo: Todo.new %>
 
-  <ul id="todos" class="divide-y list-none">
-    <%= render @todos %>
+
+  <ul class="divide-y list-none">
+    <%= turbo_frame_tag "todos", class: "min-w-full" do %>
+      <%= render @todos %>
+    <% end %>
   </ul>
 </div>
