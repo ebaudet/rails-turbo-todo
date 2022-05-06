@@ -1,24 +1,25 @@
-# README
+# Rails 7 : Turbo Stream TODO example
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
+* Ruby v3.0.1
+* Rails v7.0.2.4
+* Hotwire stack
 * Database creation
+```shell
+rails db:migrate
+```
+* Launch it
+```shell
+bin/dev
+```
 
-* Database initialization
+### About
 
-* How to run the test suite
+Todo example with turbo stream action in order to have a simple page application : the content change without reloading the whole page.
 
-* Services (job queues, cache servers, search engines, etc.)
+__turbo frame__ : to update a frame in the page
 
-* Deployment instructions
+- see: https://turbo.hotwired.dev/reference/frames
 
-* ...
+__turbo stream__ : to `append`, `prepend`, `replace`, `update`, `remove`, `before` or `after`
+
+- see: https://turbo.hotwired.dev/reference/streams
